@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>USA States-Capitals Game</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+#game-container {
+  display: flex;
+  overflow: hidden;
+  width: 100vw;
+}
+
+.slide {
+  flex: 0 0 100%;
+  display: none;
+}
+
+.slide.active {
+  display: block;
+}
+
+button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}</style></head>
+<body>
+  <div id="game-container">
+    <div class="slide">
+      <h2>California</h2>
+      <button onclick="checkAnswer('Sacramento')">Sacramento</button>
+      <button onclick="checkAnswer('Los Angeles')">Los Angeles</button>
+      <button onclick="checkAnswer('San Francisco')">San Francisco</button>
+    </div>
+    <div class="slide">
+      <h2>Texas</h2>
+      <button onclick="checkAnswer('Austin')">Austin</button>
+      <button onclick="checkAnswer('Houston')">Houston</button>
+      <button onclick="checkAnswer('Dallas')">Dallas</button>
+    </div>
+    <!-- Add more slides as needed -->
+  </div>
+  <button id="prev" onclick="prevSlide()">Previous</button>
+  <button id="next" onclick="nextSlide()">Next</button>
+  <script src="script.js"></script>
+  <script>const slides = document.querySelectorAll('.slide');
+let currentSlide = 0;
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.remove('active');
+    if (i === index) {
+      slide.classList.add('active');
+    }
+  });
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+}
+
+function prevSlide() {
+  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+  showSlide(currentSlide);
+}
+
+function checkAnswer(answer) {
+  const correctAnswers = ['Sacramento', 'Austin'];
+  if (correctAnswers[currentSlide] === answer) {
+    alert('Correct!');
+  } else {
+    alert('Wrong!');
+  }
+}
+
+showSlide(currentSlide);</script></body>
+</html>

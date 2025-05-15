@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Button</title>
+    <style>
+        .share-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="share-btn" onclick="sharePage()">Share</button>
+
+    <script>
+        function sharePage() {
+            if (navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    url: window.location.href
+                }).then(() => {
+                    console.log('Thanks for sharing!');
+                }).catch((err) => {
+                    console.log('Error sharing:', err);
+                });
+            } else {
+                // Fallback: Copy link to clipboard
+                navigator.clipboard.writeText(window.location.href);
+                alert('Link copied to clipboard!');
+            }
+        }
+    </script>
+    <div style="position: fixed; bottom: 20px; right: 20px;">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://yourwebsite.com" target="_blank">
+        <button style="background-color: #3b5998; color: white;">Facebook</button>
+    </a>
+    <a href="https://twitter.com/intent/tweet?url=https://yourwebsite.com&text=Check this out!" target="_blank">
+        <button style="background-color: #1da1f2; color: white;">Twitter</button>
+    </a>
+    <a href="https://api.whatsapp.com/send?text=Check this out! https://yourwebsite.com" target="_blank">
+        <button style="background-color: #25d366; color: white;">WhatsApp</button>
+    </a>
+</div>
+
+</body>
+</html>

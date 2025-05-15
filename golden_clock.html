@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gold Analog Clock</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background: #121212;
+  color: gold;
+  font-family: 'Arial', sans-serif;
+}
+
+.clock {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  border: 10px solid gold;
+  border-radius: 50%;
+  background: radial-gradient(circle, #3a3a3a, #121212);
+  box-shadow: 0 0 20px gold;
+}
+
+.numbers {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.number {
+  position: absolute;
+  font-size: 1.2rem;
+  color: gold;
+}
+
+.hands {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hand {
+  position: absolute;
+  background: gold;
+  transform-origin: bottom center;
+  transform: rotate(0deg);
+  border-radius: 5px;
+}
+
+.hand.hour {
+  width: 6px;
+  height: 60px;
+  top: 40px;
+}
+
+.hand.minute {
+  width: 4px;
+  height: 80px;
+  top: 30px;
+}
+
+.hand.second {
+  width: 2px;
+  height: 100px;
+  top: 20px;
+  background: red;
+}
+
+/* Animation for real-time clock */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}</style></head>
+<body>
+  <div class="clock">
+    <div class="numbers">
+      <span class="number" style="transform: rotate(30deg) translate(110px) rotate(-30deg);">1</span>
+      <span class="number" style="transform: rotate(60deg) translate(110px) rotate(-60deg);">2</span>
+      <span class="number" style="transform: rotate(90deg) translate(110px) rotate(-90deg);">3</span>
+      <span class="number" style="transform: rotate(120deg) translate(110px) rotate(-120deg);">4</span>
+      <span class="number" style="transform: rotate(150deg) translate(110px) rotate(-150deg);">5</span>
+      <span class="number" style="transform: rotate(180deg) translate(110px) rotate(-180deg);">6</span>
+      <span class="number" style="transform: rotate(210deg) translate(110px) rotate(-210deg);">7</span>
+      <span class="number" style="transform: rotate(240deg) translate(110px) rotate(-240deg);">8</span>
+      <span class="number" style="transform: rotate(270deg) translate(110px) rotate(-270deg);">9</span>
+      <span class="number" style="transform: rotate(300deg) translate(110px) rotate(-300deg);">10</span>
+      <span class="number" style="transform: rotate(330deg) translate(110px) rotate(-330deg);">11</span>
+      <span class="number" style="transform: rotate(0deg) translate(110px);">12</span>
+    </div>
+    <div class="hands">
+      <div class="hand hour"></div>
+      <div class="hand minute"></div>
+      <div class="hand second"></div>
+    </div>
+  </div>
+  <script>
+  const hourHand = document.querySelector('.hand.hour');
+  const minuteHand = document.querySelector('.hand.minute');
+  const secondHand = document.querySelector('.hand.second');
+
+  function updateClock() {
+    const now = new Date();
+    const hours = now.getHours() % 12;
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+
+    const hourDegrees = (hours * 30) + (minutes / 2); // 360°/12 hours
+    const minuteDegrees = minutes * 6; // 360°/60 minutes
+    const secondDegrees = seconds * 6; // 360°/60 seconds
+
+    hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+    minuteHand.style.transform = `rotate(${minuteDegrees}deg)`;
+    secondHand.style.transform = `rotate(${secondDegrees}deg)`;
+  }
+
+  setInterval(updateClock, 1000);
+  updateClock();
+</script>
+</body>
+</html>

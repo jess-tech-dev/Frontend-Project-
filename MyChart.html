@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comic-Style Chat</title>
+    <link rel="stylesheet" href="styles.css">
+  <style>body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.chat-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-box {
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.bubble {
+    padding: 10px 15px;
+    max-width: 70%;
+    border-radius: 20px;
+    position: relative;
+    font-size: 14px;
+}
+
+.bubble.left {
+    align-self: flex-start;
+    background-color: #f1f1f1;
+}
+
+.bubble.left::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: -10px;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-right-color: #f1f1f1;
+    border-left: 0;
+    margin-top: -10px;
+}
+
+.bubble.right {
+    align-self: flex-end;
+    background-color: #d1f7d1;
+}
+
+.bubble.right::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: -10px;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-left-color: #d1f7d1;
+    border-right: 0;
+    margin-top: -10px;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}</style></head>
+<body>
+    <div class="chat-container">
+        <div class="chat-box" id="chatBox">
+            <div class="bubble left">Hi mom!</div>
+            <div class="bubble right">Hi Almira!</div>
+            <div class="bubble left">I love you mom.</div>
+            <div class="bubble right">I love you too!</div>
+        </div>
+        <div class="controls">
+            <input type="text" id="inputBox" placeholder="Type a message..." />
+            <button onclick="sendMessage()">Send</button>
+            <button onclick="clearMessages()">Clear Chat</button>
+        </div>
+    </div>
+  <script src="script.js"></script>
+  <script>function sendMessage() {
+    const inputBox = document.getElementById("inputBox");
+    const message = inputBox.value.trim();
+
+    if (message) {
+        const chatBox = document.getElementById("chatBox");
+        const newBubble = document.createElement("div");
+        newBubble.classList.add("bubble", "right");
+        newBubble.textContent = message;
+
+        chatBox.appendChild(newBubble);
+        chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+        inputBox.value = "";
+    }
+}
+
+function clearMessages() {
+    const chatBox = document.getElementById("chatBox");
+    chatBox.innerHTML = ""; // Clears all chat bubbles
+}</script></body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>SEMANTICS</title>
+  <style>
+  .container {
+    display: flex; /* Enables flexbox */
+    gap: 10px; /* Adds space between elements */
+  }
+
+  .section {
+    flex: 2; /* Takes more space */
+    background: lightblue;
+    padding: 20px;
+  }
+
+  .aside {
+    flex: 1; /* Takes less space */
+    background: lightgray;
+    padding: 20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <section class="section">
+    <article>
+      <h2>Development</h2>
+      <p>This is an article inside a section.</p>
+    </article>
+  </section>
+  <aside class="aside">
+    <h2>Design</h2>
+    <p>This is an aside element.</p>
+  </aside>
+</div>
+</body>
+</html>

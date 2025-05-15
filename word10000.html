@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Letter Disappear Animation</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: black; /* Initial background color */
+      font-family: Arial, sans-serif;
+      color: yellow; /* Text color */
+      overflow: hidden;
+      animation: backgroundChange 4s ease forwards 3.5s; /* Background changes after letters disappear */
+    }
+
+    .word {
+      display: flex;
+      font-size: 4rem; /* Font size for the letters */
+    }
+
+    .letter {
+      animation: fadeOut 0.5s ease forwards;
+    }
+
+    /* Animation to make letters disappear */
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+
+    /* Adding delays for disappearing letters */
+    .letter:nth-child(1) {
+      animation-delay: 0s;
+    }
+    .letter:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+    .letter:nth-child(3) {
+      animation-delay: 1s;
+    }
+    .letter:nth-child(4) {
+      animation-delay: 1.5s;
+    }
+    .letter:nth-child(5) {
+      animation-delay: 2s;
+    }
+    .letter:nth-child(6) {
+      animation-delay: 2.5s;
+    }
+    .letter:nth-child(7) {
+      animation-delay: 3s;
+    }
+
+    /* Animation for background color change */
+    @keyframes backgroundChange {
+      from {
+        background-color: black;
+      }
+      to {
+        background: yellow;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="word">
+    <div class="letter">A</div>
+    <div class="letter">M</div>
+    <div class="letter">E</div>
+    <div class="letter">R</div>
+    <div class="letter">I</div>
+    <div class="letter">C</div>
+    <div class="letter">A</div>
+  </div>
+</body>
+</html>

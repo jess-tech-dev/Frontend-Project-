@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Marquee</title>
+  <style>
+    .marquee {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .marquee-text {
+      display: inline-block;
+      animation: scroll 10s linear infinite;
+    }
+    @keyframes scroll {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="marquee">
+    <span class="marquee-text" id="marquee-text">Hover to Pause!</span>
+  </div>
+
+  <script>
+    const marqueeText = document.getElementById('marquee-text');
+
+    // Pause animation on hover
+    marqueeText.addEventListener('mouseenter', () => {
+      marqueeText.style.animationPlayState = 'paused';
+    });
+
+    // Resume animation on mouse leave
+    marqueeText.addEventListener('mouseleave', () => {
+      marqueeText.style.animationPlayState = 'running';
+    });
+  </script>
+</body>
+</html>

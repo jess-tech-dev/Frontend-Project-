@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jessy Theme with React</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+</head>
+<body>
+  <!-- Root element for React -->
+  <div id="root"></div>
+
+  <!-- React Code -->
+  <script type="text/babel">
+    const Header = () => (
+      <header>
+        <nav className="navbar">
+          <div className="container">
+            <a href="#" className="logo">Jessy</a>
+            <ul className="nav-links">
+              <li><a href="#about">About</a></li>
+              <li><a href="#portfolio">Portfolio</a></li>
+              <li><a href="#testimonials">Testimonials</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+    );
+
+    const Hero = () => (
+      <section className="hero">
+        <div className="container">
+          <h1>Welcome to Jessy</h1>
+          <p>Your gateway to stunning designs and creativity.</p>
+          <a href="#about" className="btn">Learn More</a>
+        </div>
+      </section>
+    );
+
+    const About = () => (
+      <section id="about" className="about">
+        <div className="container">
+          <h2>About Us</h2>
+          <p>We are a team of designers and developers passionate about creating beautiful websites.</p>
+        </div>
+      </section>
+    );
+
+    const Portfolio = () => (
+      <section id="portfolio" className="portfolio">
+        <div className="container">
+          <h2>Our Portfolio</h2>
+          <div className="grid">
+            <div className="grid-item"><img src="https://via.placeholder.com/300" alt="Portfolio 1" /></div>
+            <div className="grid-item"><img src="https://via.placeholder.com/300" alt="Portfolio 2" /></div>
+            <div className="grid-item"><img src="https://via.placeholder.com/300" alt="Portfolio 3" /></div>
+            <div className="grid-item"><img src="https://via.placeholder.com/300" alt="Portfolio 4" /></div>
+          </div>
+        </div>
+      </section>
+    );
+
+    const Testimonials = () => (
+      <section id="testimonials" className="testimonials">
+        <div className="container">
+          <h2>What Our Clients Say</h2>
+          <div className="testimonial">
+            <p>"Jessy has been a game-changer for our business. Highly recommended!"</p>
+            <h4>- Jane Doe</h4>
+          </div>
+        </div>
+      </section>
+    );
+
+    const Contact = () => (
+      <section id="contact" className="contact">
+        <div className="container">
+          <h2>Contact Us</h2>
+          <form>
+            <input type="text" placeholder="Your Name" required />
+            <input type="email" placeholder="Your Email" required />
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit" className="btn">Send Message</button>
+          </form>
+        </div>
+      </section>
+    );
+
+    const Footer = () => (
+      <footer>
+        <div className="container">
+          <p>&copy; 2025 Jessy. All Rights Reserved.</p>
+          <div className="socials">
+            <a href="#"><i className="fab fa-facebook"></i></a>
+            <a href="#"><i className="fab fa-twitter"></i></a>
+            <a href="#"><i className="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </footer>
+    );
+
+    const App = () => (
+      <div>
+        <Header />
+        <Hero />
+        <About />
+        <Portfolio />
+        <Testimonials />
+        <Contact />
+        <Footer />
+      </div>
+    );
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

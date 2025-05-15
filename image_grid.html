@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Grids with Slider</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>/* Styling for the 4 image grid */
+.image-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.image-grid-4 img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Styling for the 10 images container inside the fourth grid square */
+.image-grid-10-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.image-grid-10 {
+  display: none; /* Hide the images initially */
+}
+
+.image-grid-10 .slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-grid-10 .slider-images {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+.image-grid-10 .slider-images img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.image-grid-10 .slider button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.image-grid-10 .slider .prev {
+  left: 10px;
+}
+
+.image-grid-10 .slider .next {
+  right: 10px;
+}
+
+/* Styling for the "+10" overlay text */
+.image-overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  border-radius: 5px;
+  z-index: 1;
+}</style> 
+</head>
+<body>
+  <!-- Grid of Four Images -->
+  <div class="image-grid-4">
+    <img src="image1.jpg" alt="Image 1">
+    <img src="image2.jpg" alt="Image 2">
+    <img src="image3.jpg" alt="Image 3">
+    
+    <!-- Fourth Grid Square (Hidden Images) -->
+    <div class="image-grid-10-container" onclick="toggleImages()">
+      <div class="image-overlay">+10</div>
+      <div class="image-grid-10">
+        <div class="slider">
+          <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+          <div class="slider-images">
+            <img src="image5.jpg" alt="Image 5">
+            <img src="image6.jpg" alt="Image 6">
+            <img src="image7.jpg" alt="Image 7">
+            <img src="image8.jpg" alt="Image 8">
+            <img src="image9.jpg" alt="Image 9">
+            <img src="image10.jpg" alt="Image 10">
+            <img src="image11.jpg" alt="Image 11">
+            <img src="image12.jpg" alt="Image 12">
+            <img src="image13.jpg" alt="Image 13">
+            <img src="image14.jpg" alt="Image 14">
+          </div>
+          <button class="next" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>let currentSlide = 0;
+
+function toggleImages() {
+  const imageGrid = document.querySelector('.image-grid-10');
+  imageGrid.style.display = (imageGrid.style.display === 'none' || imageGrid.style.display === '') ? 'block' : 'none';
+}
+
+function moveSlide(direction) {
+  const images = document.querySelectorAll('.slider-images img');
+  const totalSlides = images.length;
+
+  currentSlide += direction;
+
+  if (currentSlide < 0) {
+    currentSlide = totalSlides - 1;
+  } else if (currentSlide >= totalSlides) {
+    currentSlide = 0;
+  }
+
+  updateSlider();
+}
+
+function updateSlider() {
+  const images = document.querySelectorAll('.slider-images img');
+  const offset = -currentSlide * 100; // Move based on the current slide
+  document.querySelector('.slider-images').style.transform = `translateX(${offset}%)`;
+}
+
+updateSlider();  // Initialize the slider</script>  
+</body>
+</html>

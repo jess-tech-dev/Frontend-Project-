@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Portfolio</title>
+    <!-- Inline CSS -->
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+      header {
+        background-color: #282c34;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      ul li {
+        margin: 5px 0;
+      }
+      footer {
+        text-align: center;
+        padding: 10px;
+        background: #f8f8f8;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+    <!-- React and Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+  </head>
+  <body>
+    <!-- Root div for React -->
+    <div id="root"></div>
+    <!-- JSX Script -->
+    <script type="text/babel">
+      // Footer Component
+      function Footer() {
+        return (
+          <footer>
+            <p>© 2025 Your Name | <a href="mailto:yourname@example.com">Contact Me</a></p>
+          </footer>
+        );
+      }
+
+      // App Component
+      function App() {
+        return (
+          <div>
+            {/* Header */}
+            <header>
+              <h1>Welcome to My Portfolio</h1>
+            </header>
+            {/* Main Section */}
+            <main style={{ padding: "20px" }}>
+              <section>
+                <h2>About Me</h2>
+                <p>
+                  Hi, I'm a Network Engineer and Web Developer. I specialize in
+                  building dynamic and responsive websites and managing IT infrastructures.
+                </p>
+              </section>
+              <section>
+                <h2>Skills</h2>
+                <ul>
+                  <li>React</li>
+                  <li>HTML5 & CSS3</li>
+                  <li>Python</li>
+                  <li>JavaScript</li>
+                  <li>Network Configuration</li>
+                </ul>
+              </section>
+            </main>
+            {/* Footer */}
+            <Footer />
+          </div>
+        );
+      }
+
+      // Render App Component
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+  </body>
+</html>

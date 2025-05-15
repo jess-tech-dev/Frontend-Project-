@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Letters</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: skyblue; /* Background color */
+      font-family: Arial, sans-serif;
+      overflow: hidden; /* Prevent horizontal scrolling */
+    }
+
+    .container {
+      display: flex;
+      gap: 15px; /* Space between spheres */
+    }
+
+    .sphere {
+      width: 80px; /* Increased size for better visibility */
+      height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle, 
+        rgba(255, 255, 255, 0.9) 0%, 
+        rgba(173, 216, 230, 0.9) 70%, 
+        rgba(135, 206, 250, 0.9) 100%);
+      border-radius: 50%;
+      color: #333; /* Dark text for contrast */
+      font-size: 30px; /* Larger font size */
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      position: relative;
+      transform: translateX(100vw); /* Start off-screen */
+      opacity: 0; /* Hidden initially */
+      animation: moveIn 1.5s ease-in-out forwards;
+    }
+
+    /* Animation for spheres */
+    @keyframes moveIn {
+      0% {
+        transform: translateX(100vw); /* Off-screen */
+        opacity: 0; /* Invisible */
+      }
+      100% {
+        transform: translateX(0); /* Final position */
+        opacity: 1; /* Fully visible */
+      }
+    }
+
+    /* Delays for each sphere */
+    .sphere:nth-child(1) { animation-delay: 0.5s; }
+    .sphere:nth-child(2) { animation-delay: 1s; }
+    .sphere:nth-child(3) { animation-delay: 1.5s; }
+    .sphere:nth-child(4) { animation-delay: 2s; }
+    .sphere:nth-child(5) { animation-delay: 2.5s; }
+    .sphere:nth-child(6) { animation-delay: 3s; }
+    .sphere:nth-child(7) { animation-delay: 3.5s; }
+    .sphere:nth-child(8) { animation-delay: 4s; }
+    .sphere:nth-child(9) { animation-delay: 4.5s; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="sphere">J</div>
+    <div class="sphere">E</div>
+    <div class="sphere">S</div>
+    <div class="sphere">S</div>
+    <div class="sphere">Y</div>
+    <div class="sphere">M</div>
+    <div class="sphere">B</div>
+    <div class="sphere">A</div>
+    <div class="sphere">Y</div>
+  </div>
+</body>
+</html>

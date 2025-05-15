@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>/* styles.css */
+body {
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.todo-container {
+  background: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.todo-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#new-task {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+#add-task {
+  padding: 10px 15px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#task-list {
+  list-style: none;
+  padding: 0;
+}
+
+#task-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+.filter-buttons {
+  margin-top: 20px;
+}
+
+.filter {
+  padding: 5px 10px;
+  border: none;
+  background: #f0f0f0;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.filter.active {
+  background: #007bff;
+  color: white;
+}
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>// script.js
+$(document).ready(function () {
+  // Add a new task
+  $("#add-task").click(function () {
+    const taskText = $("#new-task").val();
+    if (taskText.trim() !== "") {
+      const taskItem = `<li>
+        <span class="task">${taskText}</span>
+        <button class="complete-task">✔</button>
+        <button class="delete-task">✖</button>
+      </li>`;
+      $("#task-list").append(taskItem);
+      $("#new-task").val("");
+    }
+  });
+
+  // Mark task as completed
+  $(document).on("click", ".complete-task", function () {
+    $(this).siblings(".task").toggleClass("completed");
+  });
+
+  // Delete a task
+  $(document).on("click", ".delete-task", function () {
+    $(this).parent("li").remove();
+  });
+
+  // Filter tasks
+  $(".filter").click(function () {
+    const filter = $(this).data("filter");
+    $(".filter").removeClass("active");
+    $(this).addClass("active");
+
+    $("#task-list li").each(function () {
+      const isCompleted = $(this).find(".task").hasClass("completed");
+      if (filter === "all" || 
+          (filter === "completed" && isCompleted) || 
+          (filter === "active" && !isCompleted)) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
+  });
+}); </script>
+</head>
+<body>
+  <div class="todo-container">
+    <h1>My To-Do List</h1>
+    <div class="todo-input">
+      <input type="text" id="new-task" placeholder="Add a new task...">
+      <button id="add-task">Add</button>
+    </div>
+    <ul id="task-list"></ul>
+    <div class="filter-buttons">
+      <button class="filter" data-filter="all">All</button>
+      <button class="filter" data-filter="active">Active</button>
+      <button class="filter" data-filter="completed">Completed</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sphere Animation</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+  body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(to bottom, #f0f8ff, #4682b4);
+  overflow: hidden;
+}
+
+.sphere {
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle at 30% 30%, #ffffff, #0077be);
+  border-radius: 50%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: 0;
+  animation: moveSphere 4s ease-in-out forwards;
+}
+
+@keyframes moveSphere {
+  0% {
+    transform: translateY(100%);
+  }
+  25% {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translateY(100%);
+  }
+  75% {
+    transform: translateY(-50%);
+  }
+ 100% {
+    transform: translateY(0%);
+  }
+}</style></head>
+<body>
+  <h1>I'm Jessy</h1><br>
+  <h2>My hobbie is Basketball</h2>
+  <div class="sphere"></div>
+</body>
+</html>

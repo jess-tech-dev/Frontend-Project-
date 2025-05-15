@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comic-Style Chat</title>
+    <link rel="stylesheet" href="styles.css">
+  <style>/* Bubbles Animation */
+@keyframes floatBubble {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-300px);
+    }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: skyblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.chat-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    transition: transform 0.3s ease;
+    font-size: 12px;
+}
+
+.zoom-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+}
+
+button {
+    padding: 8px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 70px;
+    font-size: 10px;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* Button colors */
+.almira-btn {
+    background-color: yellow;
+}
+
+.jessy-btn {
+    background-color: lime;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 10px;
+}
+
+.chat-box {
+    height: 200px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.bubble {
+    padding: 8px 12px;
+    max-width: 70%;
+    border-radius: 20px;
+    position: relative;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.bubble.left {
+    align-self: flex-start;
+    background-color: #f1f1f1;
+    color: darkblue;
+}
+
+.bubble.left::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: -10px;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-right-color: #f1f1f1;
+    border-left: 0;
+    margin-top: -10px;
+}
+
+.bubble.right {
+    align-self: flex-end;
+    background-color: #d1f7d1;
+    color: darkgreen;
+}
+
+.bubble.right::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: -10px;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-left-color: #d1f7d1;
+    border-right: 0;
+    margin-top: -10px;
+}
+
+/* Background Bubbles */
+.bubble-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.bubble-background .bubble {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+    animation: floatBubble 10s infinite;
+    opacity: 0.6;
+}
+
+.bubble-background .bubble:nth-child(odd) {
+    animation-duration: 12s;
+    animation-delay: -2s;
+}
+
+.bubble-background .bubble:nth-child(even) {
+    animation-duration: 8s;
+    animation-delay: -4s;
+}</style></head>
+<body>
+    <div class="zoom-controls">
+        <button onclick="zoomIn()">Zoom In</button>
+        <button onclick="zoomOut()">Zoom Out</button>
+    </div>
+    <div class="chat-container" id="chatContainer">
+        <div class="chat-box" id="chatBox">
+            <div class="bubble left">Salut maman!</div>
+            <div class="bubble right">Hi Almira!</div>
+            <div class="bubble left">Je t'aime maman.</div>
+            <div class="bubble right">I love you too!</div>
+        </div>
+        <div class="controls">
+            <input type="text" id="inputBox" placeholder="Type a message..." />
+            <button onclick="sendMessage('almira')" class="almira-btn">Almira</button>
+            <button onclick="sendMessage('jessy')" class="jessy-btn">Jessy</button>
+            <button onclick="clearMessages()">Clear Chat</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+  <script>let zoomLevel = 1;
+
+const translations = {
+    "Salut maman!": "Hi mom!",
+    "Je t'aime maman.": "I love you mom.",
+};
+
+function sendMessage(user) {
+    const inputBox = document.getElementById("inputBox");
+    const message = inputBox.value.trim();
+
+    if (message) {
+        const chatBox = document.getElementById("chatBox");
+        const newBubble = document.createElement("div");
+
+        if (user === "almira") {
+            // Almira's message in French
+            newBubble.classList.add("bubble", "left");
+            newBubble.textContent = message;
+        } else {
+            // Jessy's message - translation if Almira spoke French
+            newBubble.classList.add("bubble", "right");
+            const translatedMessage = translations[message] || "Translation not available";
+            newBubble.textContent = translatedMessage;
+        }
+
+        chatBox.appendChild(newBubble);
+        chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+        inputBox.value = ""; // Clear the input box
+    }
+}
+
+function clearMessages() {
+    const chatBox = document.getElementById("chatBox");
+    chatBox.innerHTML = ""; // Clears all chat bubbles
+}
+
+// Add background bubbles
+function createBackgroundBubbles() {
+    const bubbleContainer = document.createElement('div');
+    bubbleContainer.classList.add('bubble-background');
+
+    for (let i = 0; i < 30; i++) {
+        const bubble = document.createElement('div');
+        bubble.classList.add('bubble');
+        bubble.style.left = `${Math.random() * 100}vw`;
+        bubble.style.animationDuration = `${Math.random() * 10 + 5}s`;
+        bubble.style.animationDelay = `${Math.random() * 10}s`;
+        bubbleContainer.appendChild(bubble);
+    }
+
+    document.body.appendChild(bubbleContainer);
+}
+
+// Call the function to add background bubbles
+createBackgroundBubbles();
+
+function zoomIn() {
+    zoomLevel += 0.1;
+    updateZoom();
+}
+
+function zoomOut() {
+    zoomLevel -= 0.1;
+    updateZoom();
+}
+
+function updateZoom() {
+    const chatContainer = document.getElementById("chatContainer");
+    chatContainer.style.transform = `scale(${zoomLevel})`;
+}</script></body>
+</html>

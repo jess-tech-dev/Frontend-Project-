@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Keyboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <style> /* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
+
+/* Keyboard Container */
+.keyboard {
+  display: inline-block;
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Row Layout */
+.row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+/* Key Button Styles */
+.key {
+  background: #e0e0e0;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.key:hover {
+  background: #d6d6d6;
+}
+
+.key:active {
+  background: #c4c4c4;
+}
+
+/* Special Keys */
+.special-key {
+  background: #cccccc;
+  color: #333333;
+}
+
+.special-key:hover {
+  background: #bbbbbb;
+}
+
+/* Space Bar */
+.space-bar {
+  flex-grow: 1;
+  text-align: center;
+}</style>
+</head>
+<body>
+  <div class="keyboard">
+    <div class="row">
+      <button class="key">Q</button>
+      <button class="key">W</button>
+      <button class="key">E</button>
+      <button class="key">R</button>
+      <button class="key">T</button>
+      <button class="key">Y</button>
+      <button class="key">U</button>
+      <button class="key">I</button>
+      <button class="key">O</button>
+      <button class="key">P</button>
+    </div>
+    <div class="row">
+      <button class="key">A</button>
+      <button class="key">S</button>
+      <button class="key">D</button>
+      <button class="key">F</button>
+      <button class="key">G</button>
+      <button class="key">H</button>
+      <button class="key">J</button>
+      <button class="key">K</button>
+      <button class="key">L</button>
+    </div>
+    <div class="row">
+      <button class="key special-key">Shift</button>
+      <button class="key">Z</button>
+      <button class="key">X</button>
+      <button class="key">C</button>
+      <button class="key">V</button>
+      <button class="key">B</button>
+      <button class="key">N</button>
+      <button class="key">M</button>
+      <button class="key special-key">Del</button>
+    </div>
+    <div class="row">
+      <button class="key special-key">123</button>
+      <button class="key space-bar">Space</button>
+      <button class="key special-key">Enter</button>
+    </div>
+  </div>
+</body>
+</html>

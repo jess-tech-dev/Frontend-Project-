@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Download & Subscription</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: #333;
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+main {
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+form label {
+  display: block;
+  margin-top: 10px;
+}
+
+form input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background: #5cb85c;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #4cae4c;
+}
+
+footer {
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 16px;
+  }
+
+  form input {
+    width: 100%;
+  }
+}</style> 
+</head>
+<body>
+  <header>
+    <h1>Access PDFs and Subscribe</h1>
+  </header>
+
+  <main>
+    <!-- Section for PDFs -->
+    <section id="pdfs">
+      <h2>Download PDFs</h2>
+      <ul>
+        <li><a href="pdfs/example1.pdf" download>Download Example 1</a></li>
+        <li><a href="pdfs/example2.pdf" download>Download Example 2</a></li>
+      </ul>
+    </section>
+
+    <!-- Subscription Form -->
+    <section id="subscribe">
+      <h2>Subscribe to Our Newsletter</h2>
+      <form id="subscriptionForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <button type="submit">Subscribe</button>
+      </form>
+      <p id="responseMessage"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 PDF Access Platform</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>document.getElementById('subscriptionForm').addEventListener('submit', function (e) {
+  e.preventDefault(); // Prevent form submission
+
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+
+  if (name && email) {
+    document.getElementById('responseMessage').textContent = `Thank you for subscribing, ${name}!`;
+    document.getElementById('responseMessage').style.color = "green";
+    this.reset();
+  } else {
+    document.getElementById('responseMessage').textContent = "Please fill out all fields.";
+    document.getElementById('responseMessage').style.color = "red";
+  }
+});</script> 
+</body>
+</html>

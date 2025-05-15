@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Sounds</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <style> body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.thumbnail {
+    display: inline-block;
+    margin: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.thumbnail img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.thumbnail:hover {
+    transform: scale(1.1);
+}
+
+.thumbnail p {
+    margin-top: 10px;
+    font-weight: bold;
+}
+    </style>
+</head>
+<body>
+    <div class="thumbnail" id="cat">
+        <img src="images/cat.jpg" alt="Cat">
+        <p>Cat</p>
+    </div>
+    <div class="thumbnail" id="dog">
+        <img src="images/dog.jpg" alt="Dog">
+        <p>Dog</p>
+    </div>
+    <div class="thumbnail" id="bird">
+        <img src="images/bird.jpg" alt="Bird">
+        <p>Bird</p>
+    </div>
+    <script src="script.js"></script>
+    <script>const animalSounds = {
+    cat: new Audio("sounds/cat.mp3"),
+    dog: new Audio("sounds/dog.mp3"),
+    bird: new Audio("sounds/bird.mp3"),
+};
+
+document.querySelectorAll(".thumbnail").forEach((thumbnail) => {
+    thumbnail.addEventListener("click", () => {
+        const id = thumbnail.id;
+        animalSounds[id].play();
+    });
+});</script>  
+</body>
+</html>

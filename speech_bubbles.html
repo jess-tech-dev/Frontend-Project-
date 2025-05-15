@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="styles/style.css"/>
+  <title>conversation</title>
+  <style>
+  body {
+  text-align:center;
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f9f9f9;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: gold;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.chat-message {
+  max-width: 70%;
+  padding: 15px 20px;
+  border-radius: 20px;
+  position: relative;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.speech-left {
+  background-color: #f0f0f0;
+  color: #333;
+  align-self: flex-start;
+}
+
+.speech-left::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-top-color: #f0f0f0;
+  border-bottom: 0;
+  margin-left: -10px;
+  margin-bottom: -10px;
+}
+
+.speech-right {
+  background-color: #007bff;
+  color: #fff;
+  align-self: flex-end;
+}
+
+.speech-right::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-top-color: #007bff;
+  border-bottom: 0;
+  margin-right: -10px;
+  margin-bottom: -10px;
+}
+
+button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}</style></head>
+<body>
+  <h1>
+    Speech Bubbles
+  </h1>
+  <div class="chat-container">
+  <div class="chat-message speech-left">
+    <p>Hey Jessy, how about you?</p>
+  </div>
+  <div class="chat-message speech-right">
+    <p>I'm great, what's up?</p>
+  </div>
+</div>
+<button id="addMessage">Add a New Message</button>
+  <p><em>Created by Jessy Mbay 2025</em></p>
+  <script>const chatContainer = document.querySelector('.chat-container');
+const addMessageButton = document.getElementById('addMessage');
+
+// Example messages for the conversation
+const messages = [
+  { text: "What are you up to?", sender: "left" },
+  { text: "Just working on a project. You?", sender: "right" },
+  { text: "Same here! Let's catch up later.", sender: "left" },
+];
+
+let messageIndex = 0;
+
+addMessageButton.addEventListener('click', () => {
+  if (messageIndex < messages.length) {
+    const message = messages[messageIndex];
+    const messageElement = document.createElement('div');
+    messageElement.className = `chat-message speech-${message.sender}`;
+    messageElement.innerHTML = `<p>${message.text}</p>`;
+    chatContainer.appendChild(messageElement);
+    messageIndex++;
+  } else {
+    alert("No more messages!");
+  }
+});
+  </script></body>
+</html>

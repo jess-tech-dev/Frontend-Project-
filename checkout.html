@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Integration</title>
+    <link rel="stylesheet" href="styles.css">
+  <style> /* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+}
+
+main {
+    padding: 20px;
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+#card-errors {
+    color: red;
+    margin-top: 10px;
+}
+  </style>
+  <script> // script.js
+document.addEventListener('DOMContentLoaded', async () => {
+    const stripe = Stripe('YOUR_PUBLIC_KEY'); // Replace with your Stripe public key
+    const elements = stripe.elements();
+    const cardElement = elements.create('card');
+
+    // Mount card input element
+    cardElement.mount('#card-element');
+
+    const form = document.getElementById('payment-form');
+    const cardHolderName = document.getElementById('card-holder-name');
+    const payButton = document.getElementById('pay-button');
+    const cardErrors = document.getElementById('card-errors');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        payButton.disabled = true;
+        payButton.textContent = 'Processing...';
+
+        // Create payment method
+        const { paymentMethod, error } = await stripe.createPaymentMethod({
+            type: 'card',
+            card: cardElement,
+            billing_details: {
+                name: cardHolderName.value,
+            },
+        });
+
+        if (error) {
+            cardErrors.textContent = error.message;
+            payButton.disabled = false;
+            payButton.textContent = 'Pay Now';
+        } else {
+            // Pass payment method to your backend for processing
+            processPayment(paymentMethod.id);
+        }
+    });
+
+    function processPayment(paymentMethodId) {
+        // Send the paymentMethodId to your backend for further processing
+        fetch('/process-payment', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ paymentMethodId }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Payment successful!');
+                } else {
+                    alert('Payment failed. Please try again.');
+                }
+                payButton.disabled = false;
+                payButton.textContent = 'Pay Now';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+                payButton.disabled = false;
+                payButton.textContent = 'Pay Now';
+            });
+    }
+});</script>
+</head>
+<body>
+    <header>
+        <h1>Online Store</h1>
+    </header>
+    <main>
+        <h2>Checkout</h2>
+        <form id="payment-form">
+            <label for="card-holder-name">Cardholder Name</label>
+            <input type="text" id="card-holder-name" placeholder="Enter your name" required>
+
+            <div id="card-element"><!-- Stripe Elements will insert card input here --></div>
+            <div id="card-errors" role="alert"></div>
+
+            <button type="submit" id="pay-button">Pay Now</button>
+        </form>
+    </main>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="script.js"></script>
+</body>
+</html>

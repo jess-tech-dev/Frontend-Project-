@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jessy Theme with React</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+  <style>/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 0;
+    background: #333;
+    color: #fff;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1em;
+}
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Hero Section */
+.hero {
+    background: url('https://via.placeholder.com/1920x800') no-repeat center/cover;
+    height: 100vh;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.hero .btn {
+    padding: 0.8em 1.5em;
+    background: #ff6347;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/* About Section */
+.about {
+    padding: 2em 0;
+    text-align: center;
+}
+.about h2 {
+    margin-bottom: 1em;
+}
+
+/* Portfolio Section */
+.portfolio {
+    padding: 2em 0;
+    text-align: center;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1em;
+}
+.grid-item img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+/* Testimonials */
+.testimonials {
+    padding: 2em 0;
+    background: #f4f4f4;
+    text-align: center;
+}
+.testimonial {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Contact */
+.contact {
+    padding: 2em 0;
+    text-align: center;
+}
+.contact form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.contact input, .contact textarea {
+    padding: 0.8em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.contact button {
+    padding: 0.8em;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Footer */
+footer {
+    padding: 1em 0;
+    background: #333;
+    color: #fff;
+    text-align: center;
+}
+footer .socials a {
+    color: #fff;
+    margin: 0 0.5em;
+    text-decoration: none;
+}
+  </style></head>
+<body>
+  <!-- Root element for React -->
+  <div id="root"></div>
+
+  <!-- React Code -->
+  <script type="text/babel">
+    const Header = () => (
+      <header>
+        <nav className="navbar">
+          <div className="container">
+            <a href="#" className="logo">Jessy</a>
+            <ul className="nav-links">
+              <li><a href="#about">About</a></li>
+              <li><a href="#portfolio">Portfolio</a></li>
+              <li><a href="#testimonials">Testimonials</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+    );
+
+    const Hero = () => (
+      <section className="hero">
+        <div className="container">
+          <h1>Welcome to Jessy</h1>
+          <p>Your gateway to stunning designs and creativity.</p>
+          <a href="#about" className="btn">Learn More</a>
+        </div>
+      </section>
+    );
+
+    const About = () => (
+      <section id="about" className="about">
+        <div className="container">
+          <h2>About Us</h2>
+          <p>We are a team of designers and developers passionate about creating beautiful websites.</p>
+        </div>
+      </section>
+    );
+
+    const Portfolio = () => (
+      <section id="portfolio" className="portfolio">
+        <div className="container">
+          <h2>Our Portfolio</h2>
+          <div className="grid">
+            <div className="grid-item"><img src="https://via.placeholder.com/300" alt="Portfolio 1" /></div>
+            <div className="grid-item"><img src="https://via.placeholder.com/300" alt="Portfolio 2" /></div>
+            <div className="grid-item"><img src="https://via.placeholder.com/300" alt="Portfolio 3" /></div>
+            <div className="grid-item"><img src="https://via.placeholder.com/300" alt="Portfolio 4" /></div>
+          </div>
+        </div>
+      </section>
+    );
+
+    const Testimonials = () => (
+      <section id="testimonials" className="testimonials">
+        <div className="container">
+          <h2>What Our Clients Say</h2>
+          <div className="testimonial">
+            <p>"Jessy has been a game-changer for our business. Highly recommended!"</p>
+            <h4>- Jane Doe</h4>
+          </div>
+        </div>
+      </section>
+    );
+
+    const Contact = () => (
+      <section id="contact" className="contact">
+        <div className="container">
+          <h2>Contact Us</h2>
+          <form>
+            <input type="text" placeholder="Your Name" required />
+            <input type="email" placeholder="Your Email" required />
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit" className="btn">Send Message</button>
+          </form>
+        </div>
+      </section>
+    );
+
+    const Footer = () => (
+      <footer>
+        <div className="container">
+          <p>&copy; 2025 Jessy. All Rights Reserved.</p>
+          <div className="socials">
+            <a href="#"><i className="fab fa-facebook"></i></a>
+            <a href="#"><i className="fab fa-twitter"></i></a>
+            <a href="#"><i className="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </footer>
+    );
+
+    const App = () => (
+      <div>
+        <Header />
+        <Hero />
+        <About />
+        <Portfolio />
+        <Testimonials />
+        <Contact />
+        <Footer />
+      </div>
+    );
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

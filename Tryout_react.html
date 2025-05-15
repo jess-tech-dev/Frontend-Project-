@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Hello</title>
+    <!-- Include React and ReactDOM from a CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+</head>
+<body>
+    <!-- Root element for React -->
+    <div id="root"></div>
+    <!-- Your custom script -->
+    <script>
+        // Create a React element
+        const element = (
+  <ul>
+    <li>apples</li>
+    <li>mango</li>
+    <li>banana</li> 
+  </ul>
+  );
+        // Render it to the DOM
+        ReactDOM.createRoot(document.getElementById('root')).render(element);
+    </script>
+</body>
+</html>

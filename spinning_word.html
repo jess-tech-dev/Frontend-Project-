@@ -1,0 +1,26 @@
+<div class="spinning-text">
+  I like it
+</div>
+
+<style>
+  .spinning-text {
+    font-size: 50px;
+    color: magenta;
+    text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    animation: spin 3s infinite linear;
+    transform-origin: center;
+    background: lightpink;
+    display: inline-block;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotateY(0deg);
+    }
+    to {
+      transform: rotateY(360deg);
+    }
+  }
+</style>
