@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Selector</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .step { display: none; }
+        .active { display: block; }
+        button { margin: 10px; padding: 10px; }
+    </style>
+</head>
+<body>
+
+    <h2>Choose What You Need Help With</h2>
+
+    <div id="step1" class="step active">
+        <p>What service do you need?</p>
+        <button onclick="nextStep('web')">Website Creation</button>
+        <button onclick="nextStep('network')">Network Setup</button>
+        <button onclick="nextStep('english')">English Training</button>
+    </div>
+
+    <div id="step2" class="step">
+        <p>What type of service?</p>
+        <button onclick="showResult('basic')">Basic</button>
+        <button onclick="showResult('premium')">Premium</button>
+    </div>
+
+    <script>
+        let selectedService = "";
+
+        function nextStep(service) {
+            selectedService = service;
+            document.getElementById("step1").classList.remove("active");
+            document.getElementById("step2").classList.add("active");
+        }
+
+        function showResult(type) {
+            let message = "";
+            let contactInfo = "";
+
+            if (selectedService === "web") {
+                message = (type === "basic") ? "Basic Website Creation" : "Premium Website Creation";
+                contactInfo = "Email: web@higherjess.com";
+            } else if (selectedService === "network") {
+                message = (type === "basic") ? "Basic Network Setup" : "Advanced Network Setup";
+                contactInfo = "Phone: +243-817-817+177";
+            } else if (selectedService === "english") {
+                message = (type === "basic") ? "Basic English Training" : "Advanced English Training";
+                contactInfo = "Email: english@higherjess.com";
+            }
+
+            alert(message + "\n" + contactInfo);
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lyrics Animation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .lyrics {
+      font-size: 2rem;
+      text-align: center;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid white;
+      animation: typing 6s steps(30, end), blink 0.5s step-end infinite alternate;
+    }
+
+    /* Typing animation */
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
+
+    /* Blinking cursor */
+    @keyframes blink {
+      from {
+        border-color: transparent;
+      }
+      to {
+        border-color: white;
+      }
+    }
+  
+  .lyrics:nth-child(1) {
+  animation-delay: 0s;
+}
+.lyrics:nth-child(2) {
+  animation-delay: 4s;
+}
+  @keyframes highlight {
+  0% { color: white; }
+  100% { color: yellow; }
+}
+  @keyframes scroll {
+  from { transform: translateY(100%); }
+  to { transform: translateY(-100%); }
+}
+  </style>
+</head>
+<body>
+  <div class="lyrics">🎵 This is how we animate lyrics 🎵</div>
+</body>
+</html>
